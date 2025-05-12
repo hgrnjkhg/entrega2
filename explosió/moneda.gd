@@ -1,16 +1,27 @@
 extends Sprite2D
 
-var explosio : PackedScene
+@export var explosio : PackedScene
 
-func _ready() -> void:
-	await get_tree().create_timer(1.0).timeout
-	kill()
-	
+var explotant = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept") and not explotant:
+		kill()
+#func _ready() -> void:
+	#await get_tree().create_timer(1.0).timeout
+	#kill()
 func kill():
-	var _particle = explosio.get_instance_id()
-	_particle.position = global_position
-	_particle.rotation = global_rotation
-	_particle.emitting = true
-	get_tree().current_scene.add_child(_particle)
+	explotant = true
+	visible = false 
+	
+	$so.play()
+	
+	if explosio:
+		var instancia = explosio.instantiate()
+		instancia.global_position = global_position
+		get_tree().current_scene.add_child(instancia)
+	await get_tree().create_timer(1.0).timeout
+	visible = true
+	explotant = false
 	
 	queue_free()
