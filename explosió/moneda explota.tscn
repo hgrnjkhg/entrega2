@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq6cfvviards1"]
+
+[ext_resource type="Texture2D" uid="uid://bmd3xqc3bmonv" path="res://moneda.png" id="1_mx0dt"]
+[ext_resource type="Script" uid="uid://mkbwbp4bey6c" path="res://moneda.gd" id="2_i4dq7"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Moneda" type="Sprite2D" parent="."]
+position = Vector2(553, 315)
+texture = ExtResource("1_mx0dt")
+script = ExtResource("2_i4dq7")
